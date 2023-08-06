@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jokenpo</title>
+    <style>
+        
+    </style>
+    <link rel="stylesheet" href="sty">
+</head>
+<body>
+    <h1>Jokenpo</h1>
+    <p>Escolha sua jogada:</p>
+    <button id="pedra">Pedra</button>
+    <button id="papel">Papel</button>
+    <button id="tesoura">Tesoura</button>
+    <p id="resultado"></p>
+
+    <script>
+        const jogadas = ["Pedra", "Papel", "Tesoura"];
+
+        function verificarVencedor(jogadaJogador, jogadaComputador) {
+            if (jogadaJogador === jogadaComputador) {
+                return "Empate!";
+            } else if (
+                (jogadaJogador === "Pedra" && jogadaComputador === "Tesoura") ||
+                (jogadaJogador === "Papel" && jogadaComputador === "Pedra") ||
+                (jogadaJogador === "Tesoura" && jogadaComputador === "Papel")
+            ) {
+                return "Você venceu!";
+            } else {
+                return "Você perdeu!";
+            }
+        }
+
+        function jogar(jogadaJogador) {
+            const jogadaComputador = jogadas[Math.floor(Math.random() * jogadas.length)];
+            const resultado = verificarVencedor(jogadaJogador, jogadaComputador);
+            document.getElementById("resultado").textContent = `Você escolheu: ${jogadaJogador}\nComputador escolheu: ${jogadaComputador}\n\n${resultado}`;
+        }
+
+        document.getElementById("pedra").addEventListener("click", () => jogar("Pedra"));
+        document.getElementById("papel").addEventListener("click", () => jogar("Papel"));
+        document.getElementById("tesoura").addEventListener("click", () => jogar("Tesoura"));
+    </script>
+</body>
+</html>
